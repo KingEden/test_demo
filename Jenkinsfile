@@ -36,6 +36,7 @@ pipeline {
     post {
         always {
             echo 'Post build condition running'
+            echo "Building Version ${New_version}"
         }
         failure {
             echo 'Post Action if Build failed'
