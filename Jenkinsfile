@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        New_version = '1.3.0'
+    }
     stages {
         stage('Build') {
             when {
