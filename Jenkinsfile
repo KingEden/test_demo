@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 echo "Deploying...."
-                echo "Building Version ${New_version}"
+                echo "Building Version ${env.New_version}"
                 // Here you can define commands for your deployment
             }
         }
