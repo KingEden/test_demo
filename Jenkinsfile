@@ -1,13 +1,18 @@
 pipeline {
     agent any
+    tools {
+        // Use the Maven tool named "Maven"
+        maven "Maven"
+    }
     environment {
         New_version = '1.3.0'
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                echo "Building Version ${New_version}"
+                echo 'Building Project..'
+                echo "Building Version ${env.New_version}"
+                sh "nvm install" // Assuming you intended to install Node.js using nvm
                 // Here you can define commands for your build
             }
         }
@@ -26,7 +31,6 @@ pipeline {
             }
             steps {
                 echo "Deploying...."
-                
                 // Here you can define commands for your deployment
             }
         }
