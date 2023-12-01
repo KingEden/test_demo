@@ -6,7 +6,7 @@ pipeline {
         booleanParam(name: 'executeTests', defaultValue: true, description: 'Execute tests')
     }
     environment {
-        New_version = params.Version ?: '' // Using entered version or empty string if not provided
+        New_version = '1.3.0' 
     }
     stages {
         stage('Build') {
