@@ -1,24 +1,24 @@
 pipeline {
     agent any
-    tools {
-        
-        maven "Maven"
+    parameters {
+        string(name: 'Version', defaultValue: '', description: 'Version to deploy')
+        choice(name: 'AvailableVersions', choices: ['1.1.0', '1.2.0', '1.3.0'], description: 'Select version to deploy')
+        booleanParam(name: 'executeTests', defaultValue: true, description: 'Execute tests')
     }
     environment {
-        New_version = '1.3.0'
+        New_version = params.Version ?: '' // Using entered version or empty string if not provided
     }
     stages {
         stage('Build') {
             steps {
                 echo 'Building Project..'
                 echo "Building Version ${env.New_version}"
-                sh "nvm install"
                 // Here you can define commands for your build
             }
         }
         stage('Test') {
             when {
-                expression { currentBuild.result == 'ABORTED' }
+                expression { params.executeTests }
             }
             steps {
                 echo 'Testing..'
@@ -30,7 +30,7 @@ pipeline {
                 expression { env.DEPLOY_STATUS == 'SUCCESS' }
             }
             steps {
-                echo "Deploying...."
+                echo "Deploying version ${env.New_version}..."
                 // Here you can define commands for your deployment
             }
         }
