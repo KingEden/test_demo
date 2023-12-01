@@ -5,11 +5,9 @@ pipeline {
     }
     stages {
         stage('Build') {
-            when {
-                expression { currentBuild.result == 'FAILURE' }
-            }
             steps {
                 echo 'Building..'
+                echo "Building Version ${New_version}"
                 // Here you can define commands for your build
             }
         }
@@ -28,7 +26,7 @@ pipeline {
             }
             steps {
                 echo "Deploying...."
-                echo "Building Version ${New_version}"
+                
                 // Here you can define commands for your deployment
             }
         }
@@ -36,7 +34,6 @@ pipeline {
     post {
         always {
             echo 'Post build condition running'
-            echo "Building Version ${New_version}"
         }
         failure {
             echo 'Post Action if Build failed'
