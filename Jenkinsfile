@@ -27,7 +27,8 @@ pipeline {
                 expression { env.DEPLOY_STATUS == 'SUCCESS' }
             }
             steps {
-                echo 'Deploying....'
+                echo "Deploying...."
+                echo "Building Version ${New_version}"
                 // Here you can define commands for your deployment
             }
         }
