@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Project..'
-                echo "Building Version ${env.New_version}"
+                echo "Building Version ${New_version}"
                 // Here you can define commands for your build
             }
         }
