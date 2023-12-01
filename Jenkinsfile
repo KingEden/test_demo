@@ -2,18 +2,27 @@ pipeline {
     agent any
     stages {
         stage('Build') {
+            when {
+                expression { currentBuild.result == 'FAILURE' }
+            }
             steps {
                 echo 'Building..'
                 // Here you can define commands for your build
             }
         }
         stage('Test') {
+            when {
+                expression { currentBuild.result == 'ABORTED' }
+            }
             steps {
                 echo 'Testing..'
                 // Here you can define commands for your tests
             }
         }
         stage('Deploy') {
+            when {
+                expression { env.DEPLOY_STATUS == 'SUCCESS' }
+            }
             steps {
                 echo 'Deploying....'
                 // Here you can define commands for your deployment
