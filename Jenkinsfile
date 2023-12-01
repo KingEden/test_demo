@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        // Use the Maven tool named "Maven"
+        
         maven "Maven"
     }
     environment {
@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Building Project..'
                 echo "Building Version ${env.New_version}"
-                sh "nvm install" // Assuming you intended to install Node.js using nvm
+                sh "nvm install"
                 // Here you can define commands for your build
             }
         }
